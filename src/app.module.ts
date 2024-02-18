@@ -7,8 +7,8 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    // MongooseModule.forRoot('mongodb://0.0.0.0:27017/mean-db'),
-    MongooseModule.forRoot(process.env.MONGO_URI),
+    MongooseModule.forRoot('mongodb://localhost:27017/mean-db'),
+    // MongooseModule.forRoot(process.env.MONGO_URI),
     AuthModule,
   ],
   controllers: [],

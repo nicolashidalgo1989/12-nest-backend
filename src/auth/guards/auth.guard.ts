@@ -27,12 +27,12 @@ export class AuthGuard implements CanActivate {
 
     try {
       const payload = await this.jwtService.verifyAsync<JwtPayload>(token, {
-        secret: process.env.JWT_SEED,
+        secret: 'ASkJDdh12738S@@!32asd',
       });
 
       const user = await this.authService.findUserById(payload.id);
-      if (!user) throw new UnauthorizedException('User does not exists');
-      if (!user.isActive) throw new UnauthorizedException('User is not active');
+      if (!user) throw new UnauthorizedException('User doesnt exists');
+      if (!user.isActive) throw new UnauthorizedException('User isnt active');
 
       request['user'] = user;
     } catch (error) {
@@ -43,8 +43,7 @@ export class AuthGuard implements CanActivate {
   }
 
   private extractTokenFromHeader(request: Request): string | undefined {
-    const [type, token] =
-      (request as any).headers['authorization']?.split(' ') ?? [];
+    const [type, token] = (request as any).headers['authorization']?.split(' ') ?? [];
     return type === 'Bearer' ? token : undefined;
   }
 }

@@ -22,7 +22,6 @@ export class AuthService {
   constructor(
     @InjectModel(User.name)
     private userModel: Model<User>,
-
     private jwtService: JwtService,
   ) {}
 
@@ -36,8 +35,7 @@ export class AuthService {
       });
 
       await newUser.save();
-      const { password: _, ...user } = newUser.toJSON();
-      console.log(_);
+      const { password: _, ...user } = newUser.toJSON(); 
       return user;
     } catch (error) {
       if (error.code === 11000) {
@@ -69,7 +67,6 @@ export class AuthService {
     }
 
     const { password: _, ...rest } = user.toJSON();
-    console.log(_);
     return {
       user: rest,
       token: this.getJwtToken({ id: user.id }),
@@ -83,7 +80,6 @@ export class AuthService {
   async findUserById(id: string) {
     const user = await this.userModel.findById(id);
     const { password, ...rest } = user!.toJSON();
-    console.log(password);
     return rest;
   }
 
@@ -92,7 +88,6 @@ export class AuthService {
   }
 
   update(id: number, updateAuthDto: UpdateAuthDto) {
-    console.log(updateAuthDto);
     return `This action updates a #${id} auth`;
   }
 
