@@ -20,9 +20,9 @@ import { User, UserSchema } from './entities/user.entity';
     ]),
     JwtModule.register({
       global: true,
-      // secret: process.env.JWT_SEED,
-      secret: 'ASkJDdh12738S@@!32asd',
-      signOptions: { expiresIn: '6h' },
+      secret: process.env.JWT_SEED,
+      // secret: 'ASkJDdh12738S@@!32asd',
+      signOptions: { expiresIn: '6s' },
     }),
   ],
 })
